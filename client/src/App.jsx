@@ -1,9 +1,13 @@
 import Dashboard from "./components/Dashboard";
+import "./App.css";
+import LoginPage from "./components/LoginPage";
 
 function App() {
   return (
     <>
-      <Dashboard />
+    {    
+      localStorage.getItem("auth") ? <Dashboard /> : <LoginPage />
+    }
     </>
   );
 }

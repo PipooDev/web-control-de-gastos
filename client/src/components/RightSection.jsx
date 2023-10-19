@@ -1,17 +1,47 @@
+import { useData } from "../context/DataProvider.jsx";
+import { useEffect } from "react";
+
 function RightSection() {
+  const { darkMode } = useData();
+
+  useEffect(() => {
+    // Cargar el estado desde localStorage
+    const isDarkModeEnabled = localStorage.getItem("darkMode") === "true";
+
+    // Si el estado no existe, establecerlo en false
+    if (!isDarkModeEnabled) {
+      localStorage.setItem("darkMode", "false");
+    }
+
+    if (isDarkModeEnabled) {
+      document.body.classList.add("dark-mode-variables");
+      document
+        .querySelector(".dark-mode")
+        .querySelector("span:nth-child(1)")
+        .classList.remove("active");
+      document
+        .querySelector(".dark-mode")
+        .querySelector("span:nth-child(2)")
+        .classList.add("active");
+    } else {
+      document.body.classList.remove("dark-mode-variables");
+      document
+        .querySelector(".dark-mode")
+        .querySelector("span:nth-child(1)")
+        .classList.add("active");
+      document
+        .querySelector(".dark-mode")
+        .querySelector("span:nth-child(2)")
+        .classList.remove("active");
+    }
+  })
+
   const handleOpenClose = () => {
     document.querySelector("aside").style.display = "block";
   };
+
   const handleDarkModeClick = () => {
-    document.body.classList.toggle("dark-mode-variables");
-    document
-      .querySelector(".dark-mode")
-      .querySelector("span:nth-child(1)")
-      .classList.toggle("active");
-    document
-      .querySelector(".dark-mode")
-      .querySelector("span:nth-child(2)")
-      .classList.toggle("active");
+    darkMode();
   };
 
   return (

@@ -1,6 +1,11 @@
 import OrdersTable from "./OrdersTable";
+import DataTable from "./DataTable";
 
 function MainContent() {
+  
+
+  
+
   return (
     <main>
       <h1>Analytics</h1>
@@ -81,7 +86,7 @@ function MainContent() {
         </div>
       </div>
 
-      <OrdersTable />
+      <DataTable/>
     </main>
   );
 }

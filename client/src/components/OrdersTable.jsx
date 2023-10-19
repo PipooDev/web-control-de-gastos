@@ -1,6 +1,8 @@
 import React from "react";
 import TableRow from "./TableRow";
 
+import { Link } from "react-router-dom";
+
 const OrdersTable = () => {
   const orders = [
     {
@@ -23,7 +25,7 @@ const OrdersTable = () => {
     },
     {
       productName: "Flex-Box Tutorial",
-      productNumber: "36452",
+      productNumber: "36552",
       paymentStatus: "Paid",
       status: "Active",
     },
@@ -48,7 +50,10 @@ const OrdersTable = () => {
           ))}
         </tbody>
       </table>
-      <a href="#">Show All</a>
+
+      <Link to="/data" className="a">
+        <a>Mostrar más</a>
+      </Link>
     </div>
   );
 };
