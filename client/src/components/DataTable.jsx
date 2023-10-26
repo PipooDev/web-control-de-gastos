@@ -1,13 +1,17 @@
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useData } from "../context/DataProvider.jsx";
 
 function DataTable() {
   const { data, loadData, deleteData, toggleDataDone } = useData();
+  const [search, setSearch] = useState("");
+
   const navigate = useNavigate();
 
   useEffect(() => {
     loadData();
+    console.log(loadData);
+    console.log(data);
   }, []);
 
   const TableRow = ({ data }) => {
@@ -26,15 +30,26 @@ function DataTable() {
           </button>
         </td>
         <td>
-          <button onClick={() => deleteData(data.id)} className="borrar">Delete</button>
-          <button onClick={() => navigate(`/edit/${data.id}`)} className="editar">Edit</button>
+          <button onClick={() => deleteData(data.id)} className="borrar">
+            Delete
+          </button>
+          <button
+            onClick={() => navigate(`/edit/${data.id}`)}
+            className="editar"
+          >
+            Edit
+          </button>
         </td>
       </tr>
     );
   };
 
   function renderMain() {
-    return data.map((data) => <TableRow key={data.id} data={data} />);
+    const filteredData = data.filter((data) =>
+      data.title.toLowerCase().includes(search.toLowerCase())
+    );
+
+    return filteredData.map((data) => <TableRow key={data.id} data={data} />);
   }
 
   if (data.length === 0)
@@ -49,7 +64,18 @@ function DataTable() {
       <div className="recent-orders">
         <h2>Recent Orders</h2>
 
-        <table>
+        <form>
+          <div className="input-box">
+            <label>Buscar registro</label>
+            <input
+              type="text"
+              placeholder="escribe alguna palabra clave"
+              onChange={(e) => setSearch(e.target.value)}
+            />
+          </div>
+        </form><br />
+
+        <table className="table">
           <thead>
             <tr>
               <th>Id</th>

@@ -2,13 +2,14 @@
 
 :root {
   --color-primary: #6c9bcf;
-  --color-danger: #ff0060;
+  --color-danger: #ff396a;
   --color-success: #1b9c85;
   --color-warning: #f7d060;
   --color-white: #fff;
   --color-info-dark: #7d8da1;
   --color-dark: #363949;
-  --color-light: rgba(132, 139, 200, 0.18);
+  --color-dark-low: #e6e3e3;
+  --color-light: rgba(41, 44, 73, 0.18);
   --color-dark-variant: #677483;
   --color-background: #f6f6f9;
 
@@ -26,6 +27,7 @@
   --color-background: #181a1e;
   --color-white: #202528;
   --color-dark: #edeffd;
+  --color-dark-low: #45464b;
   --color-dark-variant: #a3bdcc;
   --color-light: rgba(0, 0, 0, 0.4);
   --box-shadow: 0 2rem 3rem var(--color-light);
@@ -419,7 +421,7 @@ form .input-box label {
   color: var(--color-dark);
 }
 
-form :where(.input-box input ) {
+form :where(.input-box input) {
   position: relative;
   height: 50px;
   width: 100%;
@@ -547,17 +549,32 @@ select {
 
 main .recent-orders {
   margin-top: 1.3rem;
+  max-height: 750px;
+  overflow-y: scroll;
+  border: none;
+}
+
+.recent-orders::-webkit-scrollbar {
+  width: 3px;
+  background-color: transparent;
+}
+
+.recent-orders::-webkit-scrollbar-thumb {
+  width: 5px;
+  background-color: var(--color-dark);
+  border-radius: 6px;
 }
 
 main .recent-orders h2 {
   margin-bottom: 0.8rem;
 }
 
-main .recent-orders table {
+main .recent-orders .table {
+  border: 0px;
+  column-gap: 10px;
   background-color: var(--color-white);
   width: 100%;
   padding: var(--card-padding);
-  text-align: left;
   box-shadow: var(--box-shadow);
   border-radius: var(--card-border-radius);
   transition: all 0.3s ease;
@@ -567,20 +584,78 @@ main .recent-orders table:hover {
   box-shadow: none;
 }
 
+.table thead {
+  background-color: var(--color-white);
+  color: var(--color-dark);
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-radius: 2cm;
+  font-size: 16px;
+  font-weight: bold;
+  position: sticky;
+  top: 0;
+}
+
 main table tbody td {
-  height: 2.8rem;
+  padding-bottom: 10px;
+  text-align: center;
+  height: 1rem;
 
   color: var(--color-dark-variant);
+}
+
+.td-toggle {
+  border-top: none;
 }
 
 main table tbody tr:last-child td {
   border: none;
 }
-tbody tr {
+ 
+.btn-borrar {
+  margin-bottom: -50px;
+  transform: translateY(65px) translateX(10px);
+  height: 25px;
+  width: 50px;
+  color: #e0e0e0;
+  font-size: 1rem;
+  border: none;
   cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  background-color: #d81768;
 }
-tbody tr:hover {
-  background: #4d4d4d31;
+
+ .btn-borrar:hover {
+  background-color: #630e31;
+}
+.btn-editar {
+  margin-bottom: -50px;
+  transform: translateY(75px) translateX(10px);
+  height: 25px;
+  width: 50px;
+  color: #e0e0e0;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  background-color: #3e82db;
+}
+
+ .btn-editar:hover {
+  background-color: #342e6b;
+}
+
+
+
+.button-td {
+  background-color: transparent;
+  width: 0px;
+  cursor: pointer;
+  padding-top: 0px;
+  margin: 0%;
+  transform: translateY(25px) translateX(10px);
 }
 
 main .recent-orders a {
@@ -590,21 +665,63 @@ main .recent-orders a {
   color: var(--color-primary);
 }
 
-main .recent-orders td button {
-  height: 100%;
-  width: 40%;
-  color: var(--color-primary);
-  font-size: 1rem;
-  border: none;
-  cursor: pointer;
-  border-radius: 6px;
-  font-weight: 400;
-  transition: all 0.2s ease;
-  background-color: transparent;
+.accordion {
+  margin: 1px auto;
 }
 
-.recent-orders td button:hover {
-  color: #48408f;
+.accordion li {
+  list-style: none;
+  width: 100%;
+  margin-bottom: 4px;
+  padding: 3px;
+  border-radius: 6px;
+  background: var(--color-white);
+  box-shadow: var(--box-shadow);
+}
+
+.accordion td {
+  text-align: justify;
+  text-indent: 30px;
+  height: 2.1rem;
+  border-bottom: 1px solid var(--col);
+  color: var(--color-dark-variant);
+}
+
+.accordion li label {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.accordion li label::before {
+  content: "+";
+  margin-right: 1px;
+  font-size: 24px;
+  font-weight: 600;
+}
+input[type="checkbox"] {
+  display: none;
+}
+
+.accordion .content {
+  color: var(--color-dark);
+  padding: 0 1px;
+  line-height: 2px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s, padding 0.5s;
+}
+
+.accordion input[type="checkbox"]:checked + label + .content {
+  max-height: 400px;
+  padding: 10px 10px 20px;
+}
+
+.accordion input[type="checkbox"]:checked + label::before {
+  content: "-";
 }
 
 .right-section {

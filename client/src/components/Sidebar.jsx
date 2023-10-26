@@ -36,10 +36,17 @@ function Sidebar() {
             <h3>Registros</h3>
           </Link>
 
+          <Link to="/dataCatalogo" className="a">
+             <span className="material-symbols-outlined">note_add</span>
+            <h3>Catalogo</h3>
+          </Link>
+
           <Link to="/data" className="a">
             <span className="material-icons-sharp">task_alt</span>
             <h3>Revisados</h3>
           </Link>
+
+          
 
           {/*<Link to="/" className="a">
             <span className="material-symbols-outlined">contact_page</span>

@@ -26,6 +26,11 @@ export const DataContextProvider = ({ children }) => {
     fetchData(response.data);
   }
 
+  async function loadDataCatalogo() {
+    const response = await fetchDataCatalogoRequest();
+    fetchDataCatalogo(response.data);
+  }
+
   const deleteData = async (id) => {
     try {
       const response = await deleteDataRequest(id);
@@ -84,8 +89,7 @@ export const DataContextProvider = ({ children }) => {
     } catch (error) {
       console.error(error);
     }
-  }
-
+  };
 
   const darkMode = async () => {
     try {
@@ -99,7 +103,12 @@ export const DataContextProvider = ({ children }) => {
         .querySelector("span:nth-child(2)")
         .classList.toggle("active");
 
-        localStorage.setItem("darkMode", document.body.classList.contains("dark-mode-variables") ? "true" : "false");
+      localStorage.setItem(
+        "darkMode",
+        document.body.classList.contains("dark-mode-variables")
+          ? "true"
+          : "false"
+      );
     } catch (error) {
       console.error(error);
     }
@@ -116,7 +125,8 @@ export const DataContextProvider = ({ children }) => {
         updateData,
         toggleDataDone,
         darkMode,
-        loginUser
+        loginUser,
+        
       }}
     >
       {children}
