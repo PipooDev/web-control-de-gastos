@@ -8,6 +8,7 @@ import DataTable from "./DataTable";
 import { DataContextProvider } from "../context/DataProvider.jsx";
 import { DataCatalogoContextProvider } from "../context/DataCatalogoProvider";
 import DataCatalogo from "./DataCatalogo";
+import CatalogoForm from "./CatalogoForm";
 
 function Dashboard() {
   return (
@@ -20,6 +21,7 @@ function Dashboard() {
             <Route path="/" element={<MainContent />} />
             <Route path="/form" element={<DataForm />} />
             <Route path="/edit/:id" element={<DataForm />} />
+            <Route path="/editCatalogo/:id" element={<CatalogoForm />} />
             <Route path="/data" element={<DataTable />} />
             <Route path="/dataCatalogo" element={<DataCatalogo />} />
             <Route path="*" element={<NotFoundPage />} />

@@ -9,6 +9,7 @@
   --color-info-dark: #7d8da1;
   --color-dark: #363949;
   --color-dark-low: #e6e3e3;
+  --color-white-low: #3031319f;
   --color-light: rgba(41, 44, 73, 0.18);
   --color-dark-variant: #677483;
   --color-background: #f6f6f9;
@@ -27,7 +28,8 @@
   --color-background: #181a1e;
   --color-white: #202528;
   --color-dark: #edeffd;
-  --color-dark-low: #45464b;
+  --color-dark-low: #1b1b1bd8;
+  --color-white-low: #fffffff1;
   --color-dark-variant: #a3bdcc;
   --color-light: rgba(0, 0, 0, 0.4);
   --box-shadow: 0 2rem 3rem var(--color-light);
@@ -479,7 +481,7 @@ form :where(.gender input, .gender label) {
 
 .select-box select {
   position: relative;
-  margin-top: 15px;
+  margin-top: 0px;
   height: 50px;
   width: 100%;
   outline: none;
@@ -489,6 +491,48 @@ form :where(.gender input, .gender label) {
   font-size: 1rem;
   border-radius: 6px;
   padding: 0 15px;
+}
+
+.tooltip {
+  position: absolute;
+  color: var(--color-white-low);
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 15px;
+  padding-left: 8px;
+  transform: translateY(-10px) translateX(60px);
+}
+
+#tooltip-text {
+  font-size: 11px;
+  color: var(--color-white);
+  position: absolute;
+  top: 0;
+  transform: translateX(-28%) translateY(-115%);
+  background-color: var(--color-dark);
+  white-space: nowrap;
+  padding: 10px 15px;
+  border-radius: 7px;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+#tooltip-text::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translateX(-50%);
+  border: 15px solid;
+  border-color: var(--color-dark) #0000 #0000 #0000;
+}
+
+.tooltip:hover #tooltip-text {
+  top: -130%;
+  visibility: visible;
+  opacity: 1;
+  z-index: 2;
 }
 
 form button {
@@ -611,7 +655,7 @@ main table tbody td {
 main table tbody tr:last-child td {
   border: none;
 }
- 
+
 .btn-borrar {
   margin-bottom: -50px;
   transform: translateY(65px) translateX(10px);
@@ -626,7 +670,7 @@ main table tbody tr:last-child td {
   background-color: #d81768;
 }
 
- .btn-borrar:hover {
+.btn-borrar:hover {
   background-color: #630e31;
 }
 .btn-editar {
@@ -643,11 +687,9 @@ main table tbody tr:last-child td {
   background-color: #3e82db;
 }
 
- .btn-editar:hover {
+.btn-editar:hover {
   background-color: #342e6b;
 }
-
-
 
 .button-td {
   background-color: transparent;

@@ -68,7 +68,7 @@ function DataCatalogo() {
             </button>
             <br />
             <button
-              onClick={() => navigate(`/edit/${data.id}`)}
+              onClick={() => navigate(`/editCatalogo/${data.id}`)}
               className="btn-editar"
             >
               Editar
@@ -556,18 +556,6 @@ function DataCatalogo() {
             </table>
           </div>
         </div>
-        <ul className="accordion">
-          <li>
-            <input type="checkbox" name="accordion" id="first" />
-            <label htmlFor="first">Products</label>
-            <div className="content">
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Quisquam, quod.
-              </p>
-            </div>
-          </li>
-        </ul>
       </main>
     </div>
   );
