@@ -10,8 +10,6 @@ function DataTable() {
 
   useEffect(() => {
     loadData();
-    console.log(loadData);
-    console.log(data);
   }, []);
 
   const TableRow = ({ data }) => {

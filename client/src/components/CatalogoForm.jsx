@@ -7,7 +7,7 @@ function CatalogoForm() {
   const { createDataCatalogo, getDataCatalogo, updateDataCatalogo } =
     useDataCatalogo();
   const [data, setDataCatalogo] = useState({
-    id: "",
+    REVISADO: 0,
     BENEFICIARIO: "",
     TIPO_DE_PERSONA: "",
     RFC: "",
@@ -26,26 +26,26 @@ function CatalogoForm() {
     CLABE_INTERBANCARIA: "",
     TIPO_DE_BENEFICIARIO: "",
     NUM_CONTRATO: "",
-    SOLICITUD_DE_EMPLEO: "",
-    PADRON_GOBIERNO_DEL_ESTADO: "",
-    CV: "",
-    ACREDITACIONES_CONSTANCIAS: "",
-    CEDULA_PROFESIONAL: "",
+    SOLICITUD_DE_EMPLEO: 0,
+    PADRON_GOBIERNO_DEL_ESTADO: 0,
+    CV: 0,
+    ACREDITACIONES_CONSTANCIAS: 0,
+    CEDULA_PROFESIONAL: 0,
     NUMERO_CEDULA_PROFESIONAL: "",
-    TITULO_PROFESIONAL: "",
-    INE: "",
-    CURP2: "",
-    ACTA_DE_NACIMIENTO: "",
-    COMPROBANTE_DE_DOMICILIO: "",
-    CONSTANCIA_DEL_SAT: "",
-    NO_INHABILITADO: "",
-    ANTECEDENTES_NO_PENALES: "",
-    CERTIFICADO_MEDICO: "",
-    CARTA_DE_RECOMENDACION: "",
-    CARTA_DE_RECOMENDACION2: "",
-    CARATULA_BANCARIO: "",
-    FOTOGRAFIA_TAMAÑO_INFANTIL: "",
-    LICENCIA_PARA_CONDUCIR: "",
+    TITULO_PROFESIONAL: 0,
+    INE: 0,
+    CURP2: 0,
+    ACTA_DE_NACIMIENTO: 0,
+    COMPROBANTE_DE_DOMICILIO: 0,
+    CONSTANCIA_DEL_SAT: 0,
+    NO_INHABILITADO: 0,
+    ANTECEDENTES_NO_PENALES: 0,
+    CERTIFICADO_MEDICO: 0,
+    CARTA_DE_RECOMENDACION: 0,
+    CARTA_DE_RECOMENDACION2: 0,
+    CARATULA_BANCARIO: 0,
+    FOTOGRAFIA_TAMAÑO_INFANTIL: 0,
+    LICENCIA_PARA_CONDUCIR: 0,
     PADRON_GOBIERNO_DEL_ESTADO2: "",
     ACTA_CONSTITUTIVA: "",
     CONSTANCIA_DEL_SAT2: "",
@@ -2740,7 +2740,6 @@ function CatalogoForm() {
   const handleSelect = (e) => {
     setEntidad(e.target.value);
     setMunicipios(municipios[entidad]);
-
     const selectE = document.querySelector("select[id='ENTIDAD_FEDERATIVA']");
     const valorEntidad = selectE.value;
     const valorMunicipio = "Null";
@@ -2779,14 +2778,13 @@ function CatalogoForm() {
             onSubmit={async (values, actions) => {
               if (params.id) {
                 await updateDataCatalogo(params.id, values);
-
                 navigate("/dataCatalogo");
               } else {
                 await createDataCatalogo(values);
                 navigate("/dataCatalogo");
               }
               setDataCatalogo({
-                id: "",
+                REVISADO: 0,
                 BENEFICIARIO: "",
                 TIPO_DE_PERSONA: "",
                 RFC: "",
@@ -2805,26 +2803,26 @@ function CatalogoForm() {
                 CLABE_INTERBANCARIA: "",
                 TIPO_DE_BENEFICIARIO: "",
                 NUM_CONTRATO: "",
-                SOLICITUD_DE_EMPLEO: "",
-                PADRON_GOBIERNO_DEL_ESTADO: "",
-                CV: "",
-                ACREDITACIONES_CONSTANCIAS: "",
-                CEDULA_PROFESIONAL: "",
+                SOLICITUD_DE_EMPLEO: 0,
+                PADRON_GOBIERNO_DEL_ESTADO: 0,
+                CV: 0,
+                ACREDITACIONES_CONSTANCIAS: 0,
+                CEDULA_PROFESIONAL: 0,
                 NUMERO_CEDULA_PROFESIONAL: "",
-                TITULO_PROFESIONAL: "",
-                INE: "",
-                CURP2: "",
-                ACTA_DE_NACIMIENTO: "",
-                COMPROBANTE_DE_DOMICILIO: "",
-                CONSTANCIA_DEL_SAT: "",
-                NO_INHABILITADO: "",
-                ANTECEDENTES_NO_PENALES: "",
-                CERTIFICADO_MEDICO: "",
-                CARTA_DE_RECOMENDACION: "",
-                CARTA_DE_RECOMENDACION2: "",
-                CARATULA_BANCARIO: "",
-                FOTOGRAFIA_TAMAÑO_INFANTIL: "",
-                LICENCIA_PARA_CONDUCIR: "",
+                TITULO_PROFESIONAL: 0,
+                INE: 0,
+                CURP2: 0,
+                ACTA_DE_NACIMIENTO: 0,
+                COMPROBANTE_DE_DOMICILIO: 0,
+                CONSTANCIA_DEL_SAT: 0,
+                NO_INHABILITADO: 0,
+                ANTECEDENTES_NO_PENALES: 0,
+                CERTIFICADO_MEDICO: 0,
+                CARTA_DE_RECOMENDACION: 0,
+                CARTA_DE_RECOMENDACION2: 0,
+                CARATULA_BANCARIO: 0,
+                FOTOGRAFIA_TAMAÑO_INFANTIL: 0,
+                LICENCIA_PARA_CONDUCIR: 0,
                 PADRON_GOBIERNO_DEL_ESTADO2: "",
                 ACTA_CONSTITUTIVA: "",
                 CONSTANCIA_DEL_SAT2: "",
@@ -3547,65 +3545,6 @@ function CatalogoForm() {
           </Formik>
         </div>
       </div>
-
-      {/*<div className="new-form">
-        <div className="form-container">
-          <h2>New Form</h2>
-          <form action="#">
-            <div className="input-box">
-              <label>Nombre completo</label>
-              <input type="text" placeholder="Nombre completo" />
-            </div>
-            <div className="input-box">
-              <label>Nombre completo</label>
-              <input type="date" placeholder="Nombre completo" />
-            </div>
-
-            <div className="column">
-              <div className="input-box">
-                <label>Nombre completo</label>
-                <input type="text" placeholder="Nombre completo" />
-              </div>
-              <div className="input-box">
-                <label>Nombre completo</label>
-                <input type="text" placeholder="Nombre completo" />
-              </div>
-            </div>
-
-            <div className="gender-box">
-              <h3>Gender</h3>
-              <div className="gender-option">
-                <div className="gender">
-                  <input type="radio" id="check-male" name="gender" />
-                  <label for="check-male">Male</label>
-                </div>
-                <div className="gender">
-                  <input type="radio" id="check-female" name="gender" />
-                  <label for="check-female">Female</label>
-                </div>
-                <div className="gender">
-                  <input type="radio" id="check-other" name="gender" />
-                  <label for="check-other">other</label>
-                </div>
-              </div>
-            </div>
-
-            <div className="input-box">
-              <label>Nombre completo</label>
-              <input type="text" placeholder="Nombre completo" />
-            </div>
-            <div className="select-box">
-              <select>
-                <option>Country</option>
-                <option>dsf</option>
-                <option>Cousdfsdntry</option>
-                <option>Countrysss</option>
-              </select>
-            </div>
-            <button>Submit</button>
-          </form>
-        </div>
-      </div>*/}
     </main>
   );
 }

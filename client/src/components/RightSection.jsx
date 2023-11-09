@@ -1,8 +1,11 @@
 import { useData } from "../context/DataProvider.jsx";
-import { useEffect } from "react";
+import { useEffect, useState, useCallback } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 function RightSection() {
-  const { darkMode } = useData();
+  const { darkMode, data, loadData, deleteData, toggleDataDone } = useData();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Cargar el estado desde localStorage
@@ -34,7 +37,72 @@ function RightSection() {
         .querySelector("span:nth-child(2)")
         .classList.remove("active");
     }
-  })
+
+    loadData();
+  }, []);
+
+  const TableRow = ({ data }) => {
+    const [isOpen, setIsOpen] = useState("true");
+    const toggleShowData = useCallback(() => {
+      setIsOpen(!isOpen);
+    }, [isOpen]);
+    const handleDone = async () => {
+      await toggleDataDone(data.id);
+    };
+    const date = new Date(data.createAt);
+    const [month, day, year] = [
+      date.getMonth(),
+      date.getDate(),
+      date.getFullYear(),
+    ];
+    return (
+      <div
+        className={`${
+          data.done == 1 ? "notification" : "notification deactive"
+        }`}
+      >
+        <div className="icon" onClick={() => handleDone(data.done)}>
+          <span className="material-icons-sharp">{`${
+            data.done == 1 ? "check_box" : "check_box_outline_blank"
+          }`}</span>
+        </div>
+        <div className="content">
+          <div className="info">
+            <h3>{data.title}</h3>
+            <p>{data.description}</p>
+
+            <small className="text_muted">
+              {month + "/" + day + "/" + year}
+            </small>
+          </div>
+          <span className="material-icons-sharp" onClick={toggleShowData}>
+            more_vert
+          </span>
+          {!isOpen && (
+            <>
+              <button
+                className="btn-borrar-notas"
+                onClick={() => deleteData(data.id)}
+              >
+                <span class="material-symbols-outlined">delete</span>
+              </button>
+              <br />
+              <button
+                onClick={() => navigate(`/edit/${data.id}`)}
+                className="btn-editar-notas"
+              >
+                <span class="material-symbols-outlined">edit</span>
+              </button>
+            </>
+          )}
+        </div>
+      </div>
+    );
+  };
+
+  function renderMain() {
+    return data.map((data) => <TableRow key={data.id} data={data} />);
+  }
 
   const handleOpenClose = () => {
     document.querySelector("aside").style.display = "block";
@@ -59,19 +127,17 @@ function RightSection() {
 
         <div className="profile">
           <div className="info">
-            <p>
-              Hey <b>Reza</b>
-            </p>
+            <p></p>
             <small className="text-muted">Admin</small>
           </div>
           <div className="profile-photo">
-            <img src="https://i.pinimg.com/564x/53/3f/ee/533feef9a73f888962b4230aaf62baef.jpg" />
+            <img src="https://scontent.fmty1-1.fna.fbcdn.net/v/t39.30808-6/392928491_709104871252588_834248932198351706_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeEcODm2t3iZT3Cv3KpdvWziuV98LzjXax25X3wvONdrHSjS5Bt7Ebw0JUugcEIFJ0P5kTn4qMR-zqEEzyGJtvaE&_nc_ohc=MfG0ZtqBAYYAX_rJMp8&_nc_ht=scontent.fmty1-1.fna&oh=00_AfBNfce_QIGKF3QycBF_xHVH-Q00Vt7yqgM2Ntex_G727w&oe=654FE611" />
           </div>
         </div>
       </div>
       <div className="user-profile">
         <div className="logo">
-          <img src="https://static.vecteezy.com/system/resources/previews/015/275/813/original/hygge-slow-living-cottagecore-cat-free-png.png" />
+          <img src="https://cdn-icons-png.flaticon.com/512/6341/6341918.png" />
           <h2>Plataforma</h2>
           <p>Control de gastos</p>
         </div>
@@ -80,38 +146,20 @@ function RightSection() {
         <div className="header">
           <span className="material-icons-sharp">notifications_none</span>
         </div>
-        <div className="notification">
-          <div className="icon">
-            <span className="material-icons-sharp">volume_up</span>
-          </div>
-          <div className="content">
-            <div className="info">
-              <h3>Workshop</h3>
-              <small className="text_muted">08:00 AM - 12:00 PM</small>
-            </div>
-            <span className="material-icons-sharp">more_vert</span>
-          </div>
+        <div className="recent-orders">
+          <table className="table">
+            <div>{renderMain()}</div>
+          </table>
         </div>
 
-        <div className="notification deactive">
-          <div className="icon">
-            <span className="material-icons-sharp">edit</span>
-          </div>
-          <div className="content">
-            <div className="info">
-              <h3>Workshop</h3>
-              <small className="text_muted">08:00 AM - 12:00 PM</small>
+        <Link to="/form" className="a">
+          <div className="notification add-reminder">
+            <div>
+              <span className="material-icons-sharp">add</span>
+              <h3>Añadir Notas/Recordatorios</h3>
             </div>
-            <span className="material-icons-sharp">more_vert</span>
           </div>
-        </div>
-
-        <div className="notification add-reminder">
-          <div>
-            <span className="material-icons-sharp">add</span>
-            <h3>Add Reminder</h3>
-          </div>
-        </div>
+        </Link>
       </div>
     </div>
   );

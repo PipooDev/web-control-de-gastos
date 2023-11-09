@@ -63,7 +63,7 @@ function DataCatalogo() {
         </button>
         {!isOpen && (
           <>
-            <button className="btn-borrar" onClick={() => deleteData(data.id)}>
+            <button className="btn-borrar" onClick={() => deleteDataCatalogo(data.id)}>
               Borrar
             </button>
             <br />

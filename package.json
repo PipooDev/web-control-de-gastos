@@ -12,10 +12,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@nivo/pie": "^0.83.0",
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "morgan": "^1.10.0",
     "mysql2": "^3.6.1",
+    "nivo": "^0.31.0",
     "react-hook-form": "^7.47.0"
   },
   "devDependencies": {

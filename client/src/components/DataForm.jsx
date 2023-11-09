@@ -29,7 +29,7 @@ function DataForm() {
     <main>
       <div className="new-form">
         <div className="form-container">
-          <h2>{params.id ? "Edit data" : "Create data"}</h2>
+          <h2>{params.id ? "Editar Notas/Recordatorios" : "Agregar Notas/Recordatorios"}</h2>
 
           <Formik
             initialValues={data}
@@ -39,10 +39,10 @@ function DataForm() {
 
               if (params.id) {
                 await updateData(params.id, values);
-                navigate("/data");
+                navigate("/");
               } else {
                 await createData(values);
-                navigate("/data");
+                navigate("/");
               }
               setData({
                 title: "",

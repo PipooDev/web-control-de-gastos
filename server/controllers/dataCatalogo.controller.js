@@ -29,87 +29,67 @@ export const getDataCatalogo = async (req, res) => {
 export const createDataCatalogo = async (req, res) => {
   try {
     const {
-      beneficiario,
-      tipo_de_persona,
-      rfc,
-      curp,
-      catalogo_vialidad,
-      tipo_de_vialidad,
-      nombre_de_vialidad,
-      numero_int_ext_mz_lt,
-      asentamiento,
-      nombre_del_asentamiento,
-      entidad_federativa,
-      municipio_delegacion,
-      codigo_postal,
-      banco,
-      cta_banco,
-      clabe_interbancaria,
-      tipo_de_beneficiario,
-      num_contrato,
-      solicitud_de_empleo,
-      padron_gobierno_del_estado,
-      cv,
-      acreditaciones_constancias,
-      cedula_profesional,
-      numero_cedula_profesional,
-      titulo_profesional,
-      ine,
-      curp2,
-      acta_de_nacimiento,
-      comprobante_de_domicilio,
-      constancia_del_sat,
-      no_inhabilitado,
-      antecedentes_no_penales,
-      certificado_medico,
-      carta_de_recomendacion,
-      carta_de_recomendacion2,
-      caratula_bancario,
-      fotografia_tamano_infantil,
-      licencia_para_conducir,
-      padron_gobierno_del_estado2,
-      acta_constitutiva,
-      constancia_del_sat2,
-      opinion_positiva,
-      comprobante_de_domicilio2,
-      semblanza_curricular_pm,
-      caratula_bancario2,
-      cv_rl,
-      ine_rl,
-      cedula_profesional_rl,
-      numero_cedula_profesional_rl,
-      curp_rl,
-      acta_de_nacimiento_rl,
+      BENEFICIARIO,
+      TIPO_DE_PERSONA,
+      RFC,
+      CURP,
+      CATALOGO_VIALIDAD,
+      TIPO_DE_VIALIDAD,
+      NOMBRE_DE_VIALIDAD,
+      NUMERO_INT_EXT_MZ_LT,
+      ASENTAMIENTO,
+      NOMBRE_DEL_ASENTAMIENTO,
+      ENTIDAD_FEDERATIVA,
+      MUNICIPIO_DELEGACION,
+      CODIGO_POSTAL,
+      BANCO,
+      CTA_BANCO,
+      CLABE_INTERBANCARIA,
+      TIPO_DE_BENEFICIARIO,
+      NUM_CONTRATO,
+      SOLICITUD_DE_EMPLEO,
+      PADRON_GOBIERNO_DEL_ESTADO,
+      CV,
+      ACREDITACIONES_CONSTANCIAS,
+      CEDULA_PROFESIONAL,
+      NUMERO_CEDULA_PROFESIONAL,
+      TITULO_PROFESIONAL,
+      INE,
+      CURP2,
+      ACTA_DE_NACIMIENTO,
+      COMPROBANTE_DE_DOMICILIO,
+      CONSTANCIA_DEL_SAT,
+      NO_INHABILITADO,
+      ANTECEDENTES_NO_PENALES,
+      CERTIFICADO_MEDICO,
+      CARTA_DE_RECOMENDACION,
+      CARTA_DE_RECOMENDACION2,
+      CARATULA_BANCARIO,
+      FOTOGRAFIA_TAMAÑO_INFANTIL,
+      LICENCIA_PARA_CONDUCIR,
+      PADRON_GOBIERNO_DEL_ESTADO2,
+      ACTA_CONSTITUTIVA,
+      CONSTANCIA_DEL_SAT2,
+      OPINION_POSITIVA,
+      COMPROBANTE_DE_DOMICILIO2,
+      SEMBLANZA_CURRICULAR_PM,
+      CARATULA_BANCARIO2,
+      CV_RL,
+      INE_RL,
+      CEDULA_PROFESIONAL_RL,
+      NUMERO_CEDULA_PROFESIONAL_RL,
+      CURP_RL,
+      ACTA_DE_NACIMIENTO_RL,
+      REVISADO
     } = req.body;
 
-    // Valida los datos de la solicitud
-    const errors = validateData(req.body);
-    if (errors.length > 0) {
-      return res.status(400).json({ errors });
-    }
-
-    // Genera la consulta `INSERT INTO`
-    const generateInsertQuery = (table, data) => {
-      const columns = Object.keys(data);
-      const values = data.map(value => JSON.stringify(value));
-      const query = `
-    INSERT INTO ${table} (
-      ${columns.join(", ")}
-    )
-    VALUES (
-      ${values.join(", ")}
+    const [result] = await pool.query(
+      `INSERT INTO catalogoctasegr(BENEFICIARIO,TIPO_DE_PERSONA,RFC,CURP,CATALOGO_VIALIDAD,TIPO_DE_VIALIDAD,NOMBRE_DE_VIALIDAD,NUMERO_INT_EXT_MZ_LT,ASENTAMIENTO,NOMBRE_DEL_ASENTAMIENTO,ENTIDAD_FEDERATIVA,MUNICIPIO_DELEGACION,CODIGO_POSTAL,BANCO,CTA_BANCO,CLABE_INTERBANCARIA,TIPO_DE_BENEFICIARIO,NUM_CONTRATO,SOLICITUD_DE_EMPLEO,PADRON_GOBIERNO_DEL_ESTADO,CV,ACREDITACIONES_CONSTANCIAS,CEDULA_PROFESIONAL,NUMERO_CEDULA_PROFESIONAL,TITULO_PROFESIONAL,INE,CURP2,ACTA_DE_NACIMIENTO,COMPROBANTE_DE_DOMICILIO,CONSTANCIA_DEL_SAT,NO_INHABILITADO,ANTECEDENTES_NO_PENALES,CERTIFICADO_MEDICO,CARTA_DE_RECOMENDACION,CARTA_DE_RECOMENDACION2,CARATULA_BANCARIO,FOTOGRAFIA_TAMAÑO_INFANTIL,LICENCIA_PARA_CONDUCIR,PADRON_GOBIERNO_DEL_ESTADO2,ACTA_CONSTITUTIVA,CONSTANCIA_DEL_SAT2,OPINION_POSITIVA,COMPROBANTE_DE_DOMICILIO2,SEMBLANZA_CURRICULAR_PM,CARATULA_BANCARIO2,CV_RL,INE_RL,CEDULA_PROFESIONAL_RL,NUMERO_CEDULA_PROFESIONAL_RL,CURP_RL,ACTA_DE_NACIMIENTO_RL,REVISADO) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`,
+      [BENEFICIARIO, TIPO_DE_PERSONA, RFC, CURP, CATALOGO_VIALIDAD, TIPO_DE_VIALIDAD, NOMBRE_DE_VIALIDAD, NUMERO_INT_EXT_MZ_LT, ASENTAMIENTO, NOMBRE_DEL_ASENTAMIENTO, ENTIDAD_FEDERATIVA, MUNICIPIO_DELEGACION, CODIGO_POSTAL, BANCO, CTA_BANCO, CLABE_INTERBANCARIA, TIPO_DE_BENEFICIARIO, NUM_CONTRATO, SOLICITUD_DE_EMPLEO, PADRON_GOBIERNO_DEL_ESTADO, CV, ACREDITACIONES_CONSTANCIAS, CEDULA_PROFESIONAL, NUMERO_CEDULA_PROFESIONAL, TITULO_PROFESIONAL, INE, CURP2, ACTA_DE_NACIMIENTO, COMPROBANTE_DE_DOMICILIO, CONSTANCIA_DEL_SAT, NO_INHABILITADO, ANTECEDENTES_NO_PENALES, CERTIFICADO_MEDICO, CARTA_DE_RECOMENDACION, CARTA_DE_RECOMENDACION2, CARATULA_BANCARIO, FOTOGRAFIA_TAMAÑO_INFANTIL, LICENCIA_PARA_CONDUCIR, PADRON_GOBIERNO_DEL_ESTADO2, ACTA_CONSTITUTIVA, CONSTANCIA_DEL_SAT2, OPINION_POSITIVA, COMPROBANTE_DE_DOMICILIO2, SEMBLANZA_CURRICULAR_PM, CARATULA_BANCARIO2, CV_RL, INE_RL, CEDULA_PROFESIONAL_RL, NUMERO_CEDULA_PROFESIONAL_RL, CURP_RL, ACTA_DE_NACIMIENTO_RL, REVISADO]
     );
-  `;
-      return query;
-    };
-
-    // Ejecuta la consulta
-    const query = generateInsertQuery("CatalogoCtasEGR", data);
-    const [result] = await pool.query(query);
-
-    // Devuelve un mensaje de éxito
     res.json({
       id: result.insertId,
+      BENEFICIARIO, TIPO_DE_PERSONA, RFC, CURP, CATALOGO_VIALIDAD, TIPO_DE_VIALIDAD, NOMBRE_DE_VIALIDAD, NUMERO_INT_EXT_MZ_LT, ASENTAMIENTO, NOMBRE_DEL_ASENTAMIENTO, ENTIDAD_FEDERATIVA, MUNICIPIO_DELEGACION, CODIGO_POSTAL, BANCO, CTA_BANCO, CLABE_INTERBANCARIA, TIPO_DE_BENEFICIARIO, NUM_CONTRATO, SOLICITUD_DE_EMPLEO, PADRON_GOBIERNO_DEL_ESTADO, CV, ACREDITACIONES_CONSTANCIAS, CEDULA_PROFESIONAL, NUMERO_CEDULA_PROFESIONAL, TITULO_PROFESIONAL, INE, CURP2, ACTA_DE_NACIMIENTO, COMPROBANTE_DE_DOMICILIO, CONSTANCIA_DEL_SAT, NO_INHABILITADO, ANTECEDENTES_NO_PENALES, CERTIFICADO_MEDICO, CARTA_DE_RECOMENDACION, CARTA_DE_RECOMENDACION2, CARATULA_BANCARIO, FOTOGRAFIA_TAMAÑO_INFANTIL, LICENCIA_PARA_CONDUCIR, PADRON_GOBIERNO_DEL_ESTADO2, ACTA_CONSTITUTIVA, CONSTANCIA_DEL_SAT2, OPINION_POSITIVA, COMPROBANTE_DE_DOMICILIO2, SEMBLANZA_CURRICULAR_PM, CARATULA_BANCARIO2, CV_RL, INE_RL, CEDULA_PROFESIONAL_RL, NUMERO_CEDULA_PROFESIONAL_RL, CURP_RL, ACTA_DE_NACIMIENTO_RL, REVISADO
     });
   } catch (error) {
     return res.status(500).json({ message: error.message });

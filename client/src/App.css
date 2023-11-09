@@ -690,6 +690,31 @@ main table tbody tr:last-child td {
 .btn-editar:hover {
   background-color: #342e6b;
 }
+.btn-borrar-notas {
+  color: #e0e0e0;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  background-color: #d81768;
+}
+
+.btn-borrar-notas:hover {
+  background-color: #630e31;
+}
+.btn-editar-notas {
+  color: #e0e0e0;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  background-color: #3e82db;
+}
+
+.btn-editar-notas:hover {
+  background-color: #342e6b;
+}
 
 .button-td {
   background-color: transparent;
@@ -840,7 +865,7 @@ input[type="checkbox"] {
   width: 11rem;
   height: auto;
   margin-bottom: 0.8rem;
-  border-radius: 50%;
+  
 }
 
 .right-section .user-profile h2 {
@@ -899,7 +924,7 @@ input[type="checkbox"] {
 }
 
 .right-section .reminders .notification.deactive .icon {
-  background-color: var(--color-danger);
+  background-color: var(--color-warning);
 }
 
 .right-section .reminders .add-reminder {
