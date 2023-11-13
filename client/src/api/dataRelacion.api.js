@@ -1,21 +1,21 @@
 import axios from 'axios';
 
 export const fetchDataRelacionRequest = async (data) =>
-    await axios.get('http://localhost:4000/dataRelacion');
+    await axios.get('https://api-palacio.onrender.com/dataRelacion');
 
 export const getDataRelacionRequest = async (id) =>
-    await axios.get(`http://localhost:4000/dataRelacion/${id}`);
+    await axios.get(`https://api-palacio.onrender.com/dataRelacion/${id}`);
 
 export const createDataRelacionRequest = async (data) =>
-    await axios.post('http://localhost:4000/dataRelacion', data);
+    await axios.post('https://api-palacio.onrender.com/dataRelacion', data);
 
 export const updateDataRelacionRequest = async (id, newFields) =>
-    await axios.put(`http://localhost:4000/dataRelacion/${id}`, newFields);
+    await axios.put(`https://api-palacio.onrender.com/dataRelacion/${id}`, newFields);
 
 export const deleteDataRelacionRequest = async (id) =>
-    await axios.delete(`http://localhost:4000/dataRelacion/${id}`);
+    await axios.delete(`https://api-palacio.onrender.com/dataRelacion/${id}`);
 
 export const toggleDataDoneRelacionRequest = async (id, REVISADO) =>
-    await axios.put(`http://localhost:4000/dataRelacion/${id}`, {
+    await axios.put(`https://api-palacio.onrender.com/dataRelacion/${id}`, {
         REVISADO,
     });
