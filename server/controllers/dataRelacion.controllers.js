@@ -3,7 +3,7 @@ import { pool } from "../db.js";
 export const fetchDataRelacion = async (req, res) => {
     try {
         const [result] = await pool.query(
-            "SELECT * FROM palaciodb.relacion_gastos"
+            "SELECT * FROM plataf81_palaciodb.relacion_gastos"
         );
         res.json(result);
     } catch (error) {
@@ -13,7 +13,7 @@ export const fetchDataRelacion = async (req, res) => {
 
 export const getDataRelacion = async (req, res) => {
     try {
-        const [result] = await pool.query("SELECT * FROM palaciodb.relacion_gastos WHERE id = ?", [
+        const [result] = await pool.query("SELECT * FROM plataf81_palaciodb.relacion_gastos WHERE id = ?", [
             req.params.id,
         ]);
 
@@ -47,7 +47,7 @@ export const createDataRelacion = async (req, res) => {
 
 export const updateDataRelacion = async (req, res) => {
     try {
-        const result = await pool.query("UPDATE palaciodb.relacion_gastos SET ? WHERE id = ?", [
+        const result = await pool.query("UPDATE relacion_gastos SET ? WHERE id = ?", [
             req.body,
             req.params.id,
         ]);

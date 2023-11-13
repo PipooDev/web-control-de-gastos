@@ -3,7 +3,7 @@ import { pool } from "../db.js";
 export const fetchData = async (req, res) => {
   try {
     const [result] = await pool.query(
-      "SELECT * FROM data ORDER BY createAt ASC"
+      "SELECT * FROM plataf81_palaciodb.data ORDER BY createAt DESC"
     );
     res.json(result);
   } catch (error) {

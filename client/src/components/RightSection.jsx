@@ -1,6 +1,8 @@
 import { useData } from "../context/DataProvider.jsx";
 import { useEffect, useState, useCallback } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import logo from '../assets/logo2.jpg';
+import iconF from '../assets/iconFactura.png';
 
 function RightSection() {
   const { darkMode, data, loadData, deleteData, toggleDataDone } = useData();
@@ -131,13 +133,13 @@ function RightSection() {
             <small className="text-muted">Admin</small>
           </div>
           <div className="profile-photo">
-            <img src="https://scontent.fmty1-1.fna.fbcdn.net/v/t39.30808-6/392928491_709104871252588_834248932198351706_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeEcODm2t3iZT3Cv3KpdvWziuV98LzjXax25X3wvONdrHSjS5Bt7Ebw0JUugcEIFJ0P5kTn4qMR-zqEEzyGJtvaE&_nc_ohc=MfG0ZtqBAYYAX_rJMp8&_nc_ht=scontent.fmty1-1.fna&oh=00_AfBNfce_QIGKF3QycBF_xHVH-Q00Vt7yqgM2Ntex_G727w&oe=654FE611" />
+            <img src={logo} />
           </div>
         </div>
       </div>
       <div className="user-profile">
         <div className="logo">
-          <img src="https://cdn-icons-png.flaticon.com/512/6341/6341918.png" />
+          <img src={iconF} />
           <h2>Plataforma</h2>
           <p>Control de gastos</p>
         </div>

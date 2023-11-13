@@ -342,7 +342,7 @@ function DataIngresos() {
     <div>
       <main>
         <div>
-          <h2>Recent Orders</h2>
+          <h2>Lista de Ingresos de Datos</h2>
 
           <form>
             <div className="input-box">

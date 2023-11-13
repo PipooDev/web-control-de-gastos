@@ -178,7 +178,7 @@ function DataRelacion() {
     <div>
       <main>
         <div>
-          <h2>Recent Orders</h2>
+          <h2>Lista de Registro Relación Gastos</h2>
 
           <form>
             <div className="input-box">

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import iconF from "../assets/iconFactura.png";
 
 function Sidebar() {
   const handleOpenClose = () => {
@@ -14,7 +15,7 @@ function Sidebar() {
     <aside>
       <div className="toggle">
         <div className="logo">
-          <img src="https://cdn-icons-png.flaticon.com/512/6341/6341918.png" />
+          <img src={iconF} />
           <h2>Plataforma</h2>
         </div>
         <div className="close" id="close-btn">

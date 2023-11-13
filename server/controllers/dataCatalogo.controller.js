@@ -3,7 +3,7 @@ import { pool } from "../db.js";
 export const fetchDataCatalogo = async (req, res) => {
   try {
     const [result] = await pool.query(
-      "SELECT * FROM palaciodb.catalogoctasegr"
+      "SELECT * FROM plataf81_palaciodb.catalogoctasegr"
     );
     res.json(result);
   } catch (error) {
@@ -13,7 +13,7 @@ export const fetchDataCatalogo = async (req, res) => {
 
 export const getDataCatalogo = async (req, res) => {
   try {
-    const [result] = await pool.query("SELECT * FROM CatalogoCtasEGR WHERE id = ?", [
+    const [result] = await pool.query("SELECT * FROM catalogoctasegr WHERE id = ?", [
       req.params.id,
     ]);
 
@@ -98,7 +98,7 @@ export const createDataCatalogo = async (req, res) => {
 
 export const updateDataCatalogo = async (req, res) => {
   try {
-    const result = await pool.query("UPDATE CatalogoCtasEGR SET ? WHERE id = ?", [
+    const result = await pool.query("UPDATE catalogoctasegr SET ? WHERE id = ?", [
       req.body,
       req.params.id,
     ]);
@@ -110,7 +110,7 @@ export const updateDataCatalogo = async (req, res) => {
 
 export const deleteDataCatalogo = async (req, res) => {
   try {
-    const [result] = await pool.query("DELETE FROM CatalogoCtasEGR WHERE id = ?", [
+    const [result] = await pool.query("DELETE FROM catalogoctasegr WHERE id = ?", [
       req.params.id,
     ]);
 

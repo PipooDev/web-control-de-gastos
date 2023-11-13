@@ -3,7 +3,7 @@ import { pool } from "../db.js";
 export const fetchDataIngresos = async (req, res) => {
     try {
         const [result] = await pool.query(
-            "SELECT * FROM palaciodb.ingresodatos"
+            "SELECT * FROM plataf81_palaciodb.ingresodatos"
         );
         res.json(result);
     } catch (error) {
