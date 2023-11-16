@@ -6,6 +6,8 @@ Es una plataforma web con frontend usando ReactJs, un API Rest con NodeJs y usan
 ## 🌐Enlace al proyecto
 
 (Suele tardar un poco al iniciar sesión pero ya se está arreglnaod:D)
+usuario: user
+contraseña: 12345678
 
 [https://plataforma-palacio.com/](https://plataforma-palacio.com/)
 
